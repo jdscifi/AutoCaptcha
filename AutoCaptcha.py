@@ -46,7 +46,12 @@ class AutoCaptcha:
             # load img data
             #img_data = cv2.imread("/Users/nitin/Desktop/download.png")
             
-            img_data = self.imageObject
+            #to convert PIL to cv2
+            pil_img = self.imageObject
+            numpy_image=np.array(pil_img)  
+            img_data=cv2.cvtColor(numpy_image, cv2.COLOR_RGB2BGR) 
+
+
             
             #cv2.imshow('Original Imgage',img_data)
             #cv2.waitKey(0)
