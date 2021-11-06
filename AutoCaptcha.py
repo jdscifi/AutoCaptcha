@@ -26,7 +26,14 @@ class AutoCaptcha:
     def GrayUpScale(self):
         try:
             pass
-            ## Smriti Code
+            #converting the image to gray scale
+            GrayImage= self.imageObject.convert(mode='L')
+            #up Scaling the image
+            basewidth=256
+            wpercent = (basewidth / float(GrayImage.size[0]))
+            hsize = int((float(GrayImage.size[1]) * float(wpercent)))
+            UpScale = GrayImage.resize((basewidth, hsize), Image.ANTIALIAS)
+
         except Exception as e:
             logging.exception("Exception GrayUpScale", exc_info=True)
             print(e)
