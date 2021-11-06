@@ -61,23 +61,23 @@ class AutoCaptcha:
 
 
             # erode operation
-            erosion_op = cv2.erode(img_data,kernel,iterations = 1)
+            ErosionImg = cv2.erode(img_data,kernel,iterations = 1)
             #cv2.imshow('Erosion Operation',erosion_op)
             #cv2.waitKey(0)
 
             #dialtion Operation
 
-            dilation_op = cv2.dilate(img_data,kernel, iterations=1)
+            DilationImg = cv2.dilate(img_data,kernel, iterations=1)
             #cv2.imshow('Dilation Operation', dilation_op)
             #cv2.waitKey(0)
 
             # opening operation for noisy removal 
-            opening_op = cv2.morphologyEx(img_data,cv2.MORPH_OPEN,kernel)
+            OpeningImg = cv2.morphologyEx(img_data,cv2.MORPH_OPEN,kernel)
             #cv2.imshow('Opening Operation',opening_op)
             #cv2.waitKey(0)
 
             # closing operation for noisy removal
-            closing_op = cv2.morphologyEx(img_data,cv2.MORPH_CLOSE,kernel)
+            ClosingImg = cv2.morphologyEx(img_data,cv2.MORPH_CLOSE,kernel)
             #cv2.imshow('Closing Operation',closing_op)
             #cv2.waitKey(0)
             
