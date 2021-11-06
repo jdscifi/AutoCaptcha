@@ -1,4 +1,6 @@
+import cv2
 from PIL import Image
+import numpy as np
 import logging
 
 logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -20,6 +22,7 @@ class AutoCaptcha:
             logging.exception("Exception Image Show", exc_info=True)
             print(e)
 
+    
     def GrayUpScale(self):
         try:
             pass
@@ -27,3 +30,47 @@ class AutoCaptcha:
         except Exception as e:
             logging.exception("Exception GrayUpScale", exc_info=True)
             print(e)
+            
+            
+    def Morphology(self):
+        try:
+            pass
+        
+            # load img data
+            #img_data = cv2.imread("/Users/nitin/Desktop/download.png")
+            
+            img_data = self.imageObject
+            
+            #cv2.imshow('Original Imgage',img_data)
+            #cv2.waitKey(0)
+
+            #defining kernel
+            kernel = np.ones((5,5), np.uint8) # datatype is unsigned Int, 5by5 pixel
+
+
+            # erode operation
+            erosion_op = cv2.erode(img_data,kernel,iterations = 1)
+            #cv2.imshow('Erosion Operation',erosion_op)
+            #cv2.waitKey(0)
+
+            #dialtion Operation
+
+            dilation_op = cv2.dilate(img_data,kernel, iterations=1)
+            #cv2.imshow('Dilation Operation', dilation_op)
+            #cv2.waitKey(0)
+
+            # opening operation for noisy removal 
+            opening_op = cv2.morphologyEx(img_data,cv2.MORPH_OPEN,kernel)
+            #cv2.imshow('Opening Operation',opening_op)
+            #cv2.waitKey(0)
+
+            # closing operation for noisy removal
+            closing_op = cv2.morphologyEx(img_data,cv2.MORPH_CLOSE,kernel)
+            #cv2.imshow('Closing Operation',closing_op)
+            #cv2.waitKey(0)
+            
+        except Exception as e:
+            logging.exception("Exception Morphology", exc_info=True)
+            print(e)
+            
+
